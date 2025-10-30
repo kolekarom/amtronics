@@ -1,16 +1,15 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import { CheckCircle } from "lucide-react"
+import { CheckCircle, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import * as Icons from "lucide-react"
 
 interface ServiceCardProps {
   id: string
   title: string
-  icon: React.ComponentType<{ className?: string }>
+  iconName: string
   color: string
   description: string
   features: string[]
@@ -20,13 +19,16 @@ interface ServiceCardProps {
 export default function ServiceCardWith3D({
   id,
   title,
-  icon: Icon,
+  iconName,
   color,
   description,
   features,
   image,
 }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+
+  const IconComponent =
+    (Icons as Record<string, React.ComponentType<{ className?: string }>>)[iconName] || Icons.Package
 
   return (
     <Link href={`/services#${id}`}>
@@ -45,7 +47,7 @@ export default function ServiceCardWith3D({
           <div
             className={`w-12 h-12 ${color} rounded-lg flex items-center justify-center mb-4 transform transition-transform duration-300 ${isHovered ? "rotate-12 scale-110" : ""}`}
           >
-            <Icon className="w-6 h-6 text-white" />
+            <IconComponent className="w-6 h-6 text-white" />
           </div>
           <h3 className="text-xl font-bold text-neutral-dark mb-2">{title}</h3>
           <p className="text-text-light text-sm mb-4 leading-relaxed">{description}</p>
