@@ -29,8 +29,8 @@ export default function Contact() {
     name: "Amtronics Power System",
     address:
       "S/N 78, Swaraj Colony, Shri Gajanan Maharaj Nagar, Near Shankar Mandir, Alandi Road, Dighi – 411015, Pune, Maharashtra, India",
-    phone: "+91 98765 43210", // Placeholder - update with actual number
-    whatsapp: "+919876543210",
+    phone: "+91 8983417716", // Placeholder - update with actual number
+    whatsapp: "+8983417716",
     email: "info@amtronicspower.com",
     gstin: "27CXWPK2076B1Z8",
     workingHours: "9:00 AM - 6:00 PM (Monday–Saturday)",
