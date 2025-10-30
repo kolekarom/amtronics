@@ -1,0 +1,16 @@
+// tailwind.config.js
+theme: {
+  extend: {
+    colors: {
+      'primary-blue': '#2563EB',     // Main brand blue
+      'accent-orange': '#FACC15',    // Highlight accent
+      'neutral-dark': '#0F172A',     // Deep navy background
+      'neutral-gray': '#1E293B',     // Card / section gray
+      'text-light': '#CBD5E1',       // Muted text
+      'service-blue': '#38BDF8',     // Light blue for icons
+      'service-orange': '#FB923C',   // Orange for icons
+      'service-dark': '#475569',     // Neutral gray for icons
+      'border-light': '#E2E8F0',     // Light borders
+    },
+  },
+},

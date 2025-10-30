@@ -30,11 +30,11 @@ export default function About() {
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background to-muted/10">
       <Header />
 
       {/* Hero */}
-      <section className="bg-neutral-gray py-16 lg:py-24">
+      <section className="neutral-gray py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl lg:text-5xl font-bold text-neutral-dark mb-4">About Amtronics</h1>
           <p className="text-lg text-text-light max-w-2xl">25 years of excellence in electronic manufacturing</p>

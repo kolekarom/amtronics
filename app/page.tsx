@@ -69,25 +69,26 @@ export default function Home() {
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background to-card">
       <Header />
-
-      <HeroWithImage />
-
-      <AnimatedStats stats={stats} />
-
-      {/* Client Logos */}
-      <ClientLogos />
+      <main className="flex-1">
+        <HeroWithImage />
+        
+        {/* Client Logos */}
+        <ClientLogos />
 
       {/* Services Section */}
-      <section className="py-20 lg:py-32 bg-neutral-gray">
+      <section className="py-20 lg:py-32 bg-card/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/5" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 px-4 py-2 bg-accent-orange text-white rounded-full text-sm font-medium">
+            <div className="inline-block mb-4 px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/20">
               Our Services
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold text-neutral-dark mb-4">Comprehensive EMS Solutions</h2>
-            <p className="text-lg text-text-light max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-accent/80">
+              Comprehensive EMS Solutions
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               End-to-end electronic manufacturing services tailored to your specific requirements
             </p>
           </div>
@@ -119,85 +120,80 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32 bg-background/80 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-card/30 -z-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block mb-4 px-4 py-2 bg-primary-blue text-white rounded-full text-sm font-medium">
+              <div className="inline-block mb-4 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20">
                 Why Choose Us
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-dark mb-6">Industry-Leading Capabilities</h2>
-              <p className="text-lg text-text-light mb-8 leading-relaxed">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+                Industry-Leading <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Capabilities</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Our state-of-the-art facility and experienced team ensure your projects are completed with the highest
                 standards of quality and efficiency.
               </p>
 
               <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-primary-blue" />
+                {[
+                  {
+                    icon: <Shield className="w-6 h-6 text-primary" />,
+                    title: "Quality Assurance",
+                    description: "ISO certified processes with rigorous testing at every stage"
+                  },
+                  {
+                    icon: <Clock className="w-6 h-6 text-accent" />,
+                    title: "Fast Turnaround",
+                    description: "Quick prototyping and production to meet your deadlines"
+                  },
+                  {
+                    icon: <Users className="w-6 h-6 text-primary" />,
+                    title: "Expert Team",
+                    description: "Experienced engineers providing technical support throughout"
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="flex gap-4 group">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-neutral-dark mb-2">Quality Assurance</h3>
-                    <p className="text-sm text-text-light leading-relaxed">
-                      ISO certified processes with rigorous testing at every stage
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-accent-orange" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-neutral-dark mb-2">Fast Turnaround</h3>
-                    <p className="text-sm text-text-light leading-relaxed">
-                      Quick prototyping and production to meet your deadlines
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-primary-blue" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-neutral-dark mb-2">Expert Team</h3>
-                    <p className="text-sm text-text-light leading-relaxed">
-                      Experienced engineers providing technical support throughout
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            <div className="bg-neutral-gray rounded-2xl p-8 lg:p-12">
-              <h3 className="text-2xl font-bold text-neutral-dark mb-6">Technical Specifications</h3>
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 border border-border/20 shadow-lg">
+              <h3 className="text-2xl font-bold text-foreground mb-6">Technical Specifications</h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-border-light">
-                  <span className="text-sm font-medium text-text-light">PCB Size Range</span>
-                  <span className="text-sm font-bold text-neutral-dark">50mm × 50mm to 500mm × 600mm</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-border-light">
-                  <span className="text-sm font-medium text-text-light">Component Pitch</span>
-                  <span className="text-sm font-bold text-neutral-dark">Down to 0201 (0.6mm × 0.3mm)</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-border-light">
-                  <span className="text-sm font-medium text-text-light">BGA Pitch</span>
-                  <span className="text-sm font-bold text-neutral-dark">0.3mm and above</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-border-light">
-                  <span className="text-sm font-medium text-text-light">Layer Count</span>
-                  <span className="text-sm font-bold text-neutral-dark">Up to 32 layers</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-border-light">
-                  <span className="text-sm font-medium text-text-light">Production Capacity</span>
-                  <span className="text-sm font-bold text-neutral-dark">5M+ components/day</span>
-                </div>
-                <div className="flex justify-between items-center py-3">
-                  <span className="text-sm font-medium text-text-light">Lead Time</span>
-                  <span className="text-sm font-bold text-neutral-dark">24-48 hours (prototype)</span>
-                </div>
+                {[
+                  ["PCB Size Range", "50mm × 50mm to 500mm × 600mm"],
+                  ["Component Pitch", "Down to 0201 (0.6mm × 0.3mm)"],
+                  ["BGA Pitch", "0.3mm and above"],
+                  ["Layer Count", "Up to 32 layers"],
+                  ["Production Capacity", "5M+ components/day"],
+                  ["Lead Time", "24-48 hours (prototype)"]
+                ].map(([label, value], index) => (
+                  <div 
+                    key={index} 
+                    className="flex justify-between items-center py-3 border-b border-border/20 last:border-0 group"
+                  >
+                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {label}
+                    </span>
+                    <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                      {value}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -208,30 +204,34 @@ export default function Home() {
       <Certificates />
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-primary-blue">
+      <section className="relative py-20 lg:py-32 bg-gradient-to-r from-primary to-primary/90 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/10" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
-          <p className="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
+            Ready to Start Your <span className="text-accent">Project</span>?
+          </h2>
+          <p className="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
             Get a free quote and discover how we can help bring your electronic products to life with precision and
             reliability.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/quote"
-              className="px-8 py-3 bg-accent-orange hover:bg-accent-orange/90 text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+              className="px-8 py-3 bg-accent hover:bg-accent/90 text-primary-foreground rounded-lg font-medium flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:shadow-accent/20"
             >
               Request Free Quote
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
-              className="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-primary-blue rounded-lg font-medium transition-colors"
+              className="px-8 py-3 border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-lg font-medium transition-all backdrop-blur-sm"
             >
               Schedule Consultation
             </Link>
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
       <BackToTopButton />
