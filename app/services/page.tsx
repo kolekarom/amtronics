@@ -1,5 +1,5 @@
 "use client"
-
+import { Suspense } from "react"
 import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Header from "@/components/Header"
