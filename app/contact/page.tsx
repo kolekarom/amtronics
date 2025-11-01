@@ -19,6 +19,7 @@ import {
   Instagram,
 } from "lucide-react"
 import { useState } from "react"
+import dynamic from 'next/dynamic'
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
@@ -65,8 +66,12 @@ export default function Contact() {
     setTimeout(() => setSubmitted(false), 3000)
   }
 
+  // Dynamically import ChatBot with SSR disabled
+  const ChatBot = dynamic(() => import('@/components/ChatBot'), { ssr: false })
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col relative">
+      <ChatBot />
       <Header />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 py-16 lg:py-24">
