@@ -71,7 +71,7 @@ export default function Industries() {
       <section className="bg-gradient-to-b from-[#1E3A8A]/40 to-gray-950 py-20 lg:py-28 text-center">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl lg:text-6xl font-bold mb-4">
-            Industries{" "}
+            {" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4A7FD1] to-[#F4A261]">
               We Serve
             </span>

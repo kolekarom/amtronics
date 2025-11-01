@@ -29,15 +29,16 @@ export default function Contact() {
   const companyInfo = {
     name: "Amtronics Power System",
     address:
-      "S/N 78, Swaraj Colony, Shri Gajanan Maharaj Nagar, Near Shankar Mandir, Alandi Road, Dighi – 411015, Pune, Maharashtra, India",
+      "S/N SR NO 78, near MAHADAV MANDIR, Swaraj Colony, Shri Gajanan Maharaj Nagar, Dighi, Pune, Pimpri-Chinchwad, Maharashtra 411015, Swaraj Colony, Shri Gajanan Maharaj Nagar, Near Shankar Mandir, Alandi Road, Dighi – 411015, Pune, Maharashtra, India",
     phone: "+91 8983417716", // Placeholder - update with actual number
-    whatsapp: "+8983417716",
+    whatsapp: "+91 8983417716",
     email: "info@amtronicspower.com",
     gstin: "27CXWPK2076B1Z8",
     workingHours: "9:00 AM - 6:00 PM (Monday–Saturday)",
-    mapUrl: "https://maps.google.com/?q=S/N+78+Swaraj+Colony+Dighi+Pune",
+    mapUrl: "https://maps.app.goo.gl/KKfLrWbZAa2PgSjg7",
     mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.2606050625446!2d73.8567!3d18.5204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07cebd0001d%3A0x1234567890!2sDighi+Pune!5e0!3m2!1sen!2sin!4v1234567890",
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d999.3415479834016!2d73.87197406959181!3d18.62985519890531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c782d427546d%3A0xda492b977724cf47!2sAmtronics%20Power%20Systems!5e1!3m2!1sen!2sin!4v1762012966314!5m2!1sen!2sin",
+
   }
 
   const handleCopyAddress = () => {

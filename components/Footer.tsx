@@ -85,7 +85,7 @@ export default function Footer() {
                   <Phone className="w-3.5 h-3.5 text-[#38BDF8]" />
                 </div>
                 <a href="tel:+1234567890" className="hover:text-[#38BDF8] transition-colors">
-                  +1 (234) 567-890
+                  +91 8983417716
                 </a>
               </li>
               <li className="flex items-center gap-2 group">
@@ -97,11 +97,21 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2 group">
-                <div className="w-8 h-8 rounded-full bg-[#1E3A8A] flex items-center justify-center group-hover:bg-[#1E40AF] transition-colors flex-shrink-0">
-                  <MapPin className="w-3.5 h-3.5 text-[#38BDF8]" />
-                </div>
-                <span>123 Manufacturing Drive, Industrial Park, State 12345</span>
-              </li>
+  <div className="w-8 h-8 rounded-full bg-[#1E3A8A] flex items-center justify-center group-hover:bg-[#1E40AF] transition-colors flex-shrink-0">
+    <MapPin className="w-3.5 h-3.5 text-[#38BDF8]" />
+  </div>
+
+  <a
+    href="https://maps.app.goo.gl/KKfLrWbZAa2PgSjg7"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-sm text-white hover:text-[#38BDF8] transition-colors"
+  >
+    SR NO 78, near MAHADAV MANDIR, Swaraj Colony, Shri Gajanan Maharaj Nagar, Dighi, Pune, Pimpri-Chinchwad, Maharashtra 411015
+  </a>
+</li>
+
+
             </ul>
           </div>
         </div>
