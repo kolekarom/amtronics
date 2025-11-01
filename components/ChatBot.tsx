@@ -1,8 +1,7 @@
-// components/ChatBot.tsx
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User, MessageCircleIcon } from 'lucide-react';
+import { MessageCircleIcon, Send, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Message = {
@@ -10,6 +9,7 @@ type Message = {
   text: string;
   sender: 'user' | 'bot';
   timestamp: Date;
+  isTyping?: boolean;
 };
 
 const ChatBot = () => {
@@ -17,7 +17,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "👋 Hello! I'm Amtron, your electronics assistant. Need help with PCB design, service, or installation? Just ask!",
+      text: "👋 Hi! I'm Amtron, your electronics assistant. Need help with PCB design, installation, or service? Just ask!",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -25,46 +25,72 @@ const ChatBot = () => {
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
-    // Add user message
     const userMessage: Message = {
-      id: messages.length + 1,
+      id: Date.now(),
       text: inputValue,
       sender: 'user',
       timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const query = inputValue;
     setInputValue('');
 
-    // Simulate bot response
-    setTimeout(() => {
-      let responseText = "I'll connect you to our support team soon. Could you please leave your email?";
+    // Add typing indicator
+    const typingIndicator: Message = {
+      id: Date.now() + 1,
+      text: '...',
+      sender: 'bot',
+      timestamp: new Date(),
+      isTyping: true,
+    };
+    setMessages((prev) => [...prev, typingIndicator]);
+
+    try {
+      console.log('📤 Sending message to chat API...');
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: query }),
+      });
+
+      const data = await response.json();
       
-      const lowerInput = inputValue.toLowerCase();
-      if (lowerInput.includes('hi') || lowerInput.includes('hello') || lowerInput.includes('hey')) {
-        responseText = "Hello! How can I assist you with your electronics or Amtronics services today?";
-      } else if (lowerInput.includes('pcb')) {
-        responseText = "We offer comprehensive PCB design and assembly services. Our team can help with everything from prototype to production. Would you like a quote?";
-      } else if (lowerInput.includes('installation') || lowerInput.includes('install')) {
-        responseText = "Our team provides professional installation services for all our power systems. Could you share more details about your installation requirements?";
-      } else if (lowerInput.includes('pricing') || lowerInput.includes('quote') || lowerInput.includes('cost')) {
-        responseText = "Pricing varies based on your specific requirements. Could you share more details about your project so I can provide an accurate quote?";
-      } else if (lowerInput.includes('contact') || lowerInput.includes('support')) {
-        responseText = "You can reach our support team at support@amtronics.com or call us at +1 (555) 123-4567. How can we assist you today?";
+      if (!response.ok) {
+        console.error('❌ Chat API error:', {
+          status: response.status,
+          error: data.error || 'No error details'
+        });
+        throw new Error(data.error || 'Failed to get response from AI service');
       }
-
-      const botMessage: Message = {
-        id: messages.length + 2,
-        text: responseText,
-        sender: 'bot',
-        timestamp: new Date(),
-      };
-
-      setMessages((prev) => [...prev, botMessage]);
-    }, 800);
+      
+      const botResponse = data.text || "I'm not sure how to respond to that. Could you try rephrasing?";
+      
+      setMessages((prev) => [
+        ...prev.filter((msg) => !msg.isTyping),
+        {
+          id: Date.now() + 2,
+          text: botResponse,
+          sender: 'bot',
+          timestamp: new Date(),
+        },
+      ]);
+      
+    } catch (error) {
+      console.error('❌ Chat Error:', error);
+      setMessages((prev) => [
+        ...prev.filter((msg) => !msg.isTyping),
+        {
+          id: Date.now() + 2,
+          text: "⚠️ I'm having trouble connecting to the AI service. Please try again in a moment.",
+          sender: 'bot',
+          timestamp: new Date(),
+        },
+      ]);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -124,7 +150,17 @@ const ChatBot = () => {
                         : 'bg-slate-700/80 text-white rounded-bl-none backdrop-blur-sm'
                     } shadow-md`}
                   >
-                    <p className="text-sm">{message.text}</p>
+                    <p className="text-sm">
+                      {message.isTyping ? (
+                        <span className="flex space-x-1">
+                          <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                          <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                          <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                        </span>
+                      ) : (
+                        message.text
+                      )}
+                    </p>
                     <p className="text-xs opacity-70 mt-1 text-right">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
