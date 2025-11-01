@@ -371,5 +371,5 @@ export default function Contact() {
       <Footer />
       <BackToTopButton />
     </div>
-  )
+  ) 
 }
