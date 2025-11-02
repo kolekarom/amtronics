@@ -6,6 +6,59 @@ import Footer from "@/components/Footer"
 import BackToTopButton from "@/components/BackToTopButton"
 
 export default function ManufacturingInfrastructure() {
+  const machines = [
+    {
+      src: '/images/eps.avif',
+      title: 'EPS',
+      description: 'Efficient power source ensuring stable voltage output for production systems.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_1hcoz61hcoz61hco.png',
+      title: 'Manual axial component forming and cutting m/c',
+      description: 'Forms and cuts axial components precisely.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_8kiwvz8kiwvz8kiw.png',
+      title: 'Reflow 2',
+      description: 'Automated reflow soldering for surface mount components.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_13h0g713h0g713h0.png',
+      title: 'Kayo 6000 CPH',
+      description: 'High-precision component placement system ensuring accurate assembly.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_31oagt31oagt31oa.png',
+      title: 'Wave Soldering Machine',
+      description: 'Automated wave soldering for through-hole components.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_i22x4i22x4i22x4i.png',
+      title: 'Hotplate 390°C',
+      description: 'Heats components to precise temperatures for soldering.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_qjq6llqjq6llqjq6.png',
+      title: 'VD 960',
+      description: 'High-precision vision inspection system ensuring flawless component placement.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_qo7enoqo7enoqo7e.png',
+      title: 'DC Power Supply',
+      description: 'High-efficiency power solutions for industrial applications with advanced thermal management.'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_w40k06w40k06w40k.png',
+      title: 'Kayo A4L',
+      description: 'High-speed SMT pick-and-place machine for precise component mounting'
+    },
+    {
+      src: '/images/Gemini_Generated_Image_wkps7uwkps7uwkps.png',
+      title: 'MI Conveyor (Single Line)',
+      description: 'Single-line conveyor for smooth and efficient material flow.'
+    },
+  ]
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -35,94 +88,31 @@ export default function ManufacturingInfrastructure() {
         {/* Image Grid Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                src: '/images/eps.avif',
-                title: 'SMT Assembly Line',
-                description: 'High-precision surface mount technology for efficient PCB assembly.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_1hcoz61hcoz61hco.png',
-                title: 'Automated Testing',
-                description: 'Advanced testing equipment ensuring product reliability.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_8kiwvz8kiwvz8kiw.png',
-                title: 'Wave Soldering',
-                description: 'Automated wave soldering for through-hole components.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_13h0g713h0g713h0.png',
-                title: 'Quality Control',
-                description: 'Stringent quality control at every production stage.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_31oagt31oagt31oa.png',
-                title: 'Component Storage',
-                description: 'Organized storage for all electronic components.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_i22x4i22x4i22x4i.png',
-                title: 'Assembly Area',
-                description: 'Clean and efficient assembly workstations.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_qjq6llqjq6llqjq6.png',
-                title: 'Packaging',
-                description: 'Secure packaging for safe product delivery.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_qo7enoqo7enoqo7e.png',
-                title: 'R&D Innovation',
-                description: 'Research and development for continuous improvement.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_w40k06w40k06w40k.png',
-                title: 'Warehouse',
-                description: 'Spacious storage for inventory management.'
-              },
-              {
-                src: '/images/Gemini_Generated_Image_wkps7uwkps7uwkps.png',
-                title: 'Logistics',
-                description: 'Efficient logistics for timely deliveries.'
-              }
-            ].map((item, index) => (
+            {machines.map((item, index) => (
               <motion.div 
                 key={index} 
-                className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02]"
+                className="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-white"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                {/* Image with enhanced zoom */}
                 <div className="aspect-w-16 aspect-h-10 w-full overflow-hidden">
-                  <motion.img
-                    src={item.src}
-                    alt={item.title}
-                    className="w-full h-64 object-cover"
-                    initial={{ scale: 1 }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      transition: { 
-                        duration: 0.7,
-                        ease: [0.16, 1, 0.3, 1] 
-                      }
-                    }}
-                  />
+                  <img
+  src={item.src}
+  alt={item.title}
+  className={`w-full h-64 transition-transform duration-700 rounded-lg bg-gray-100 ${
+    index === 0 || index === 1
+      ? "scale-[0.95] object-contain"
+      : "scale-[1] object-contain"
+  }`}
+  style={{ objectFit: "contain", padding: "10px" }}
+/>
+
                 </div>
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                  <h3 className="text-white text-xl font-bold mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    {item.title}
-                  </h3>
-                  <p className="text-blue-100 text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                    {item.description}
-                  </p>
+                <div className="p-5 text-center border-t border-gray-100 bg-white">
+                  <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{item.description}</p>
                 </div>
-                
-                {/* Hover effect indicator */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-400/30 rounded-xl transition-all duration-500 pointer-events-none" />
               </motion.div>
             ))}
           </div>
