@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircleIcon, Send, X } from 'lucide-react';
+import { MessageCircle, Phone, Send, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Message = {
@@ -117,12 +117,21 @@ const ChatBot = () => {
             transition={{ duration: 0.2 }}
             className="w-80 h-[32rem] bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl border border-slate-700 backdrop-blur-md shadow-lg shadow-slate-900/30 flex flex-col overflow-hidden"
           >
-            {/* Header */}
-            <div className="p-4 bg-gradient-to-r from-slate-800 to-slate-800/80 border-b border-slate-700">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h3 className="font-semibold text-white text-lg">Need Help? 💬</h3>
-                  <p className="text-xs text-slate-300">Ask anything about electronics or our services</p>
+            {/* Header with Contact Info */}
+            <div className="p-4 bg-gradient-to-r from-blue-600 to-blue-700 border-b border-blue-800">
+              <div className="flex justify-between items-center mb-2">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-white p-2 rounded-lg">
+                    <img 
+                      src="/amtronics_logo.png" 
+                      alt="Amtronics Logo" 
+                      className="w-6 h-6 object-contain" 
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white text-lg">Need Help?</h3>
+                    <p className="text-xs text-blue-100">Ask anything about electronics or our services</p>
+                  </div>
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -130,6 +139,26 @@ const ChatBot = () => {
                 >
                   <X size={20} />
                 </button>
+              </div>
+              
+              {/* Contact Buttons */}
+              <div className="flex justify-between items-center mt-2 space-x-2">
+                <a 
+                  href="tel:+918983417716" 
+                  className="flex-1 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white text-sm py-2 px-3 rounded-lg transition-colors"
+                >
+                  <Phone size={14} className="mr-1.5" />
+                  <span>Call Us</span>
+                </a>
+                <a 
+                  href="https://wa.me/918983417716" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center bg-green-500/90 hover:bg-green-500 text-white text-sm py-2 px-3 rounded-lg transition-colors"
+                >
+                  <MessageCircle size={14} className="mr-1.5" />
+                  <span>WhatsApp</span>
+                </a>
               </div>
             </div>
 
@@ -205,7 +234,7 @@ const ChatBot = () => {
         {isOpen ? (
           <X size={24} className="text-white" />
         ) : (
-          <MessageCircleIcon size={24} className="text-white" />
+          <MessageCircle size={24} className="text-white" />
         )}
       </motion.button>
     </div>

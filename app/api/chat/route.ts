@@ -9,102 +9,131 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-// 🧠 Static Info Knowledge Base
+// 🧠 Static Info Knowledge Base — Smart & Specific Replies
 const companyInfo = [
   // 1️⃣ Company Overview
   {
-    keywords: ["amtronics", "about", "who", "what is", "company", "mission", "vision", "founded", "unique"],
-    answer: "🏢 **Amtronics Power** is an Indian electronics manufacturer specializing in power systems, inverters, PCB design, and solar solutions. Our mission is to build sustainable and efficient energy systems for modern needs.",
+    keywords: ["amtronics", "about", "who are you", "company", "what is amtronics", "mission", "vision"],
+    answer:
+      "🏢 Amtronics Power is an Indian electronics manufacturer specializing in inverters, solar systems, PCB design, and energy control solutions.",
   },
   {
-    keywords: ["location", "where", "address", "office", "headquarters"],
-    answer: "📍 Our head office is located at **S/N 78, Shri Gajanan Maharaj Nagar, Dighi – Pune, Maharashtra, India.**",
+    keywords: ["founded", "established", "started"],
+    answer: "📅 Amtronics Power was founded to deliver efficient and sustainable energy solutions in India.",
   },
   {
-    keywords: ["partners", "distributors", "dealers"],
-    answer: "🤝 Amtronics Power works with regional distributors and OEM clients across India for energy and control systems integration.",
+    keywords: ["unique", "special", "different"],
+    answer:
+      "💡 We stand out through our focus on high-efficiency, durable, and eco-friendly electronic systems.",
+  },
+  {
+    keywords: ["location", "where", "address", "office", "headquarters", "map"],
+    answer:
+      "📍 Amtronics Power Systems — SR NO 78, Near Mahadev Mandir, Swaraj Colony, Shri Gajanan Maharaj Nagar, Dighi, Pune, Maharashtra 411015.",
   },
 
-  // 2️⃣ Contact Info
+  // 2️⃣ Contact Information
   {
-    keywords: ["contact", "email", "phone", "number", "support", "help", "customer care"],
-    answer: "☎️ You can reach our support team at **support@amtronicspower.com** or call **+91 89834 17716** (Mon–Sat, 9 AM – 6 PM).",
+    keywords: ["phone", "number", "contact number", "customer care number"],
+    answer: "📞 Our customer support number is +91 89834 17716.",
   },
   {
-    keywords: ["whatsapp", "chat"],
-    answer: "💬 You can message us on WhatsApp at **+91 89834 17716** during working hours.",
+    keywords: ["email", "mail", "support email", "contact email"],
+    answer: "📧 You can email us at support@amtronicspower.com.",
   },
   {
-    keywords: ["hours", "timing", "open", "work"],
-    answer: "🕓 We’re open **Monday to Saturday, 9:00 AM – 6:00 PM**.",
+    keywords: ["whatsapp", "chat", "message"],
+    answer: "💬 Connect with us on WhatsApp at +91 89834 17716.",
+  },
+  {
+    keywords: ["working hours", "timing", "office hours", "open", "close"],
+    answer: "🕓 We’re open Monday to Saturday, 9 AM – 6 PM.",
   },
 
   // 3️⃣ Products & Services
   {
-    keywords: ["product", "services", "offer", "sell"],
-    answer: "⚙️ We offer **inverters, solar systems, battery management units, and control boards**, all designed for efficiency and reliability.",
+    keywords: ["products", "what you make", "what you sell", "product list"],
+    answer:
+      "⚙️ We manufacture inverters, solar systems, battery management units, and control boards.",
   },
   {
-    keywords: ["custom", "made to order"],
-    answer: "🔧 Yes, we provide **custom-designed electronics and power solutions** as per client requirements.",
+    keywords: ["services", "offer", "provide", "do you install"],
+    answer: "🛠️ We provide installation, repair, and maintenance services for all our systems.",
   },
   {
-    keywords: ["solar", "inverter", "installation", "battery"],
-    answer: "🔋 Yes, we provide **solar power systems, inverters**, and **installation support** across India.",
+    keywords: ["custom", "made to order", "design", "bespoke"],
+    answer: "🔧 Yes, we create custom electronics and power systems tailored to your requirements.",
   },
   {
     keywords: ["warranty", "guarantee"],
-    answer: "🛠️ All Amtronics products come with a **1-year standard warranty**.",
+    answer: "🧾 All our products come with a 1-year standard warranty.",
   },
   {
-    keywords: ["amc", "maintenance", "annual"],
-    answer: "🧰 Yes, we offer **Annual Maintenance Contracts (AMC)** for our products.",
+    keywords: ["amc", "maintenance", "annual maintenance"],
+    answer: "🧰 We offer Annual Maintenance Contracts (AMC) for continued service support.",
   },
 
   // 4️⃣ Orders & Sales
   {
-    keywords: ["buy", "purchase", "order", "discount", "payment", "bulk"],
-    answer: "🛍️ You can order directly from Amtronics or our authorized dealers. Bulk discounts are available. Payments accepted via UPI, NEFT, and cards.",
+    keywords: ["buy", "purchase", "order", "how to buy", "payment", "discount"],
+    answer:
+      "🛍️ You can order directly from Amtronics or through authorized dealers. We accept UPI, NEFT, and card payments. Bulk orders may get discounts.",
   },
 
   // 5️⃣ Delivery & Returns
   {
-    keywords: ["delivery", "shipping", "return", "refund", "replace"],
-    answer: "🚚 Delivery takes 3–7 business days. Returns are accepted for manufacturing defects within 7 days of receipt.",
+    keywords: ["delivery", "shipping", "dispatch", "receive"],
+    answer: "🚚 Standard delivery within 3–7 business days across India.",
   },
   {
-    keywords: ["claim", "service", "warranty claim"],
-    answer: "🧾 To claim warranty, contact **support@amtronicspower.com** with your product serial number and purchase proof.",
+    keywords: ["return", "refund", "replace"],
+    answer:
+      "🔄 Returns are accepted for manufacturing defects within 7 days of delivery.",
+  },
+  {
+    keywords: ["claim", "warranty claim", "service request"],
+    answer:
+      "📩 To claim warranty, email support@amtronicspower.com with your serial number and purchase proof.",
   },
 
   // 6️⃣ Support
   {
-    keywords: ["support", "not working", "repair", "issue", "fault", "problem"],
-    answer: "🔧 If you face issues, email **support@amtronicspower.com** or call **+91 89834 17716** for technical help.",
+    keywords: ["support", "help", "issue", "problem", "not working", "repair"],
+    answer:
+      "🧑‍🔧 For technical support, call +91 89834 17716 or email support@amtronicspower.com.",
   },
 
   // 7️⃣ Quality & Sustainability
   {
-    keywords: ["eco-friendly", "sustainability", "environment", "iso", "quality"],
-    answer: "🌿 Amtronics Power follows **ISO-grade manufacturing** standards and eco-friendly design practices.",
+    keywords: ["iso", "certified", "certification", "quality"],
+    answer:
+      "🏅 We’re certified with ISO 9001:2015 and RoHS Compliant manufacturing standards.",
+  },
+  {
+    keywords: ["eco-friendly", "sustainable", "environment", "green"],
+    answer:
+      "🌿 We use eco-friendly materials and sustainable manufacturing processes.",
   },
 
-  // 8️⃣ Partnerships
+  // 8️⃣ Partnerships & Business
   {
-    keywords: ["dealer", "partner", "distributor", "business"],
-    answer: "🤝 For dealership or business partnerships, contact **business@amtronicspower.com**.",
+    keywords: ["dealer", "distributor", "partner", "business inquiry"],
+    answer:
+      "🤝 To become a dealer or partner, contact us at business@amtronicspower.com.",
   },
   {
-    keywords: ["export", "international"],
-    answer: "🌍 Yes, we export select products internationally.",
+    keywords: ["export", "international", "outside india"],
+    answer: "🌍 Yes, we export selected products internationally.",
   },
 
-  // 9️⃣ Legal
+  // 9️⃣ Legal / Documentation
   {
-    keywords: ["terms", "policy", "privacy", "invoice", "gst", "registration", "manual", "datasheet"],
-    answer: "📄 All legal information, including policies, manuals, and GST invoices, is available on request via **support@amtronicspower.com**.",
+    keywords: ["terms", "policy", "privacy", "gst", "invoice", "manual", "datasheet"],
+    answer:
+      "📄 For legal documents, GST invoices, or datasheets, please email support@amtronicspower.com.",
   },
 ];
+
 
 // 🧩 Static detection function
 function detectStaticAnswer(message: string): string | null {

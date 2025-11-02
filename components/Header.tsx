@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { Menu, X, Cpu } from "lucide-react"
+import { Menu, X, Cpu, Phone, MessageCircle } from "lucide-react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
