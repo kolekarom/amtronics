@@ -14,7 +14,7 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-bold text-lg">Amtronics</div>
-                <div className="text-xs text-[#CBD5E1] font-mono">Power System</div>
+                <div className="text-xs text-[#CBD5E1] font-mono">Power Systems</div>
               </div>
             </div>
             <p className="text-sm text-[#CBD5E1] leading-relaxed">
@@ -59,13 +59,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/infrastructure" className="hover:text-white transition-colors">
-                  Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link href="/news" className="hover:text-white transition-colors">
-                  News
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About
                 </Link>
               </li>
               <li>
@@ -118,7 +113,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-[rgba(255,255,255,0.1)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#CBD5E1]"> 2025 Amtronics Power System. All rights reserved.</p>
+          <p className="text-sm text-[#CBD5E1]"> 2025 Amtronics Power Systems. All rights reserved.</p>
           <div className="flex gap-6 text-sm text-[#CBD5E1]">
             <Link href="#" className="hover:text-white transition-colors">
               Privacy Policy

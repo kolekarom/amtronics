@@ -53,10 +53,10 @@ export default function Header() {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/products", label: "Products" },
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/infrastructure", label: "Infrastructure" },
-    { href: "/news", label: "News" },
     { href: "/contact", label: "Contact" },
   ]
 
@@ -109,7 +109,7 @@ export default function Header() {
                   isDark ? "text-blue-300/80" : "text-blue-600/80"
                 }`}
               >
-                POWER SYSTEM
+                POWER SYSTEMS
               </div>
             </div>
           </Link>

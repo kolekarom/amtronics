@@ -9,6 +9,7 @@ import ServiceCardWith3D from "@/components/ServiceCardWith3D"
 import { ArrowRight, Shield, Clock, Users } from "lucide-react"
 import Link from "next/link"
 import { services } from "@/data/services"
+import ProductCard from "@/components/ProductCard"
 
 export default function Home() {
 
@@ -27,6 +28,69 @@ export default function Home() {
         
         {/* Client Logos */}
         <ClientLogos />
+
+        {/* Products Section */}
+        <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white/5" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="text-center mb-16">
+              <div className="inline-block mb-4 px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/20">
+                Our Products
+              </div>
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-accent/80">
+                Advanced Electronic Solutions
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Explore our advanced electronic manufacturing solutions designed for precision and performance.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  id: 'power-supplies',
+                  name: 'Industrial Power Supplies',
+                  description: 'High-efficiency power solutions for industrial applications with advanced thermal management.',
+                  icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20" /><path d="M2 12h20" /><path d="M3 3l18 18" /><path d="M3 21 21 3" /></svg>,
+                  image: '/images/power-supply.jpg'
+                },
+                {
+                  id: 'control-panels',
+                  name: 'Control Panels',
+                  description: 'Custom control panels with intuitive interfaces for seamless industrial automation.',
+                  icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="M2 10h20" /><path d="M9 15h1" /><path d="M14 15h1" /></svg>,
+                  image: '/images/control-panel.jpg'
+                },
+                {
+                  id: 'sensor-modules',
+                  name: 'IoT Sensor Modules',
+                  description: 'Wireless sensor modules for real-time monitoring and data collection.',
+                  icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15c.55-2.7 1.95-4.74 4.26-6a8.7 8.7 0 0 1 11.48 0 8.7 8.7 0 0 1 0 13.5 2.81 2.81 0 0 0-.1.35" /><path d="M16.32 13.9a28.75 28.75 0 0 1 3.97 1.67 2.83 2.83 0 0 0 .38.1" /><path d="M3.78 15.5a28.8 28.8 0 0 1 0-7" /><path d="M7.76 10a16.5 16.5 0 0 1 8.48 0" /><path d="M12 12v.01" /></svg>,
+                  image: '/images/iot-sensor.jpg'
+                }
+              ].map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  description={product.description}
+                  icon={product.icon}
+                  image={product.image}
+                />
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+              >
+                View All Products
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
 
       {/* Services Section */}
       <section className="py-20 lg:py-32 bg-card/50 relative overflow-hidden">
