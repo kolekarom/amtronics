@@ -9,8 +9,8 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-[#1E40AF] rounded-lg flex items-center justify-center group hover:bg-[#2563EB] transition-colors">
-                <Cpu className="w-6 h-6 text-white group-hover:text-[#38BDF8] transition-colors" />
+              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center group hover:bg-white/90 transition-colors overflow-hidden">
+                <img src="/amtronics_logo.png" alt="Amtronics Logo" className="w-8 h-8 object-contain" />
               </div>
               <div>
                 <div className="font-bold text-lg">Amtronics</div>
@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-[#CBD5E1] leading-relaxed">
-              Professional PCB assembly and EMS manufacturing since 1999.
+              Professional PCB assembly and EMS manufacturing since 2017.
             </p>
           </div>
 
@@ -59,8 +59,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/industries" className="hover:text-white transition-colors">
-                  Industries
+                <Link href="/infrastructure" className="hover:text-white transition-colors">
+                  Infrastructure
                 </Link>
               </li>
               <li>
@@ -84,7 +84,7 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-full bg-[#1E3A8A] flex items-center justify-center group-hover:bg-[#1E40AF] transition-colors">
                   <Phone className="w-3.5 h-3.5 text-[#38BDF8]" />
                 </div>
-                <a href="tel:+1234567890" className="hover:text-[#38BDF8] transition-colors">
+                <a href="tel:+91 8983417716" className="hover:text-[#38BDF8] transition-colors">
                   +91 8983417716
                 </a>
               </li>

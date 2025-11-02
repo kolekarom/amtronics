@@ -26,7 +26,7 @@ export default function HeroWithImage() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38BDF8] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#38BDF8]"></span>
             </span>
-            Trusted EMS Partner Since 1999
+            Trusted EMS Partner Since 2017
           </div>
           
           <h1 className="text-4xl lg:text-6xl font-bold text-[#F8FAFC] mb-6 leading-tight">

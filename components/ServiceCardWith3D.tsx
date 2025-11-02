@@ -27,8 +27,7 @@ export default function ServiceCardWith3D({
 }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
-  const IconComponent =
-    (Icons as Record<string, React.ComponentType<{ className?: string }>>)[iconName] || Icons.Package
+  const IconComponent = (Icons as unknown as Record<string, React.ComponentType<React.SVGProps<SVGSVGElement> & { className?: string }>>)[iconName] || Icons.Package
 
   return (
     <Link href={`/services#${id}`}>

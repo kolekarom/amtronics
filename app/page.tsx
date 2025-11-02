@@ -8,58 +8,9 @@ import AnimatedStats from "@/components/AnimatedStats"
 import ServiceCardWith3D from "@/components/ServiceCardWith3D"
 import { ArrowRight, Shield, Clock, Users } from "lucide-react"
 import Link from "next/link"
+import { services } from "@/data/services"
 
 export default function Home() {
-  const services = [
-    {
-      id: 1,
-      title: "PCB Assembly",
-      iconName: "Cpu",
-      color: "service-blue",
-      description: "High-precision surface mount and through-hole assembly with state-of-the-art equipment",
-      features: ["SMT & THT Assembly", "Multi-layer PCBs", "BGA & Fine Pitch", "Lead-free Options"],
-    },
-    {
-      id: 2,
-      title: "Prototyping",
-      iconName: "Zap",
-      color: "service-orange",
-      description: "Rapid prototyping services to accelerate your product development cycle",
-      features: ["Quick Turnaround", "Low Volume Runs", "Design Support", "Iterative Testing"],
-    },
-    {
-      id: 3,
-      title: "Box Build",
-      iconName: "Box",
-      color: "service-dark",
-      description: "Complete electro-mechanical assembly and system integration services",
-      features: ["Full Assembly", "Cable Harness", "Enclosure Integration", "Final Testing"],
-    },
-    {
-      id: 4,
-      title: "Component Sourcing",
-      iconName: "Package",
-      color: "service-blue",
-      description: "Strategic procurement and supply chain management for optimal cost efficiency",
-      features: ["Authorized Distributors", "Cost Optimization", "Inventory Management", "Obsolescence Mitigation"],
-    },
-    {
-      id: 5,
-      title: "Testing & QA",
-      iconName: "TestTube",
-      color: "service-orange",
-      description: "Comprehensive testing protocols ensuring the highest quality standards",
-      features: ["ICT & FCT", "X-Ray Inspection", "Environmental Testing", "ISO Certified"],
-    },
-    {
-      id: 6,
-      title: "After-Sales Support",
-      iconName: "Wrench",
-      color: "service-dark",
-      description: "Ongoing technical support and repair services for long-term partnerships",
-      features: ["Technical Support", "Repair Services", "Warranty Management", "Documentation"],
-    },
-  ]
 
   const stats = [
     { number: "25+", label: "Years Experience" },
@@ -97,7 +48,7 @@ export default function Home() {
             {services.map((service) => (
               <ServiceCardWith3D
                 key={service.id}
-                id={service.id.toString()}
+                id={service.id}
                 title={service.title}
                 iconName={service.iconName}
                 color={service.color}

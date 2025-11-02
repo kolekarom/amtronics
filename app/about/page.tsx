@@ -43,7 +43,7 @@ export default function About() {
             </span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl">
-            25 years of excellence in electronic manufacturing and innovation.
+            8 years of excellence in electronic manufacturing and innovation.
           </p>
         </div>
       </section>
@@ -54,12 +54,12 @@ export default function About() {
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-neutral-dark mb-6">Our Story</h2>
             <p className="text-lg text-gray-600 mb-4 leading-relaxed">
-              Founded in 1999, Amtronics Power System began with a vision to deliver world-class electronic manufacturing
+              Founded in 2017, Amtronics Power System began with a vision to deliver world-class electronic manufacturing
               services to businesses of all sizes. What started as a small operation has evolved into a trusted partner
               for hundreds of companies across industries.
             </p>
             <p className="text-lg text-gray-600 mb-4 leading-relaxed">
-              Over 25 years, we’ve invested in cutting-edge technology, skilled professionals, and modern processes to
+              Over 8 years, we’ve invested in cutting-edge technology, skilled professionals, and modern processes to
               ensure excellence. Our commitment to quality has earned us global trust and numerous certifications.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -71,15 +71,15 @@ export default function About() {
           <div className="bg-gray-100 rounded-2xl p-8 lg:p-12 border border-gray-200 shadow-sm">
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <div className="text-4xl font-bold text-blue-500 mb-1">25+</div>
+                <div className="text-4xl font-bold text-blue-500 mb-1">8+</div>
                 <div className="text-neutral-dark font-semibold">Years in Business</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-orange-500 mb-1">500+</div>
+                <div className="text-4xl font-bold text-orange-500 mb-1">100+</div>
                 <div className="text-neutral-dark font-semibold">Active Clients</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-blue-500 mb-1">10M+</div>
+                <div className="text-4xl font-bold text-blue-500 mb-1">10K+</div>
                 <div className="text-neutral-dark font-semibold">PCBs Assembled</div>
               </div>
               <div>

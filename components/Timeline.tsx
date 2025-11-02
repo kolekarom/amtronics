@@ -1,11 +1,11 @@
 export default function Timeline() {
   const milestones = [
-    { year: "1999", title: "Founded", description: "Amtronics established as a PCB assembly startup" },
-    { year: "2005", title: "ISO Certified", description: "Achieved ISO 9001:2000 certification" },
-    { year: "2010", title: "Expansion", description: "Opened new manufacturing facility" },
-    { year: "2015", title: "Advanced Tech", description: "Invested in automated assembly lines" },
-    { year: "2020", title: "Industry Leader", description: "Recognized as top EMS provider in region" },
-    { year: "2024", title: "Innovation Hub", description: "Launched advanced testing capabilities" },
+    { year: "2017", title: "Founded", description: "Amtronics established as a PCB assembly startup" },
+    { year: "2019", title: "ISO Certified", description: "Achieved ISO 9001:14001 certification" },
+    { year: "2021", title: "Expansion", description: "Opened new manufacturing facility" },
+    { year: "2022", title: "Advanced Tech", description: "Invested in automated assembly lines" },
+    { year: "2023", title: "Industry Leader", description: "Recognized as top EMS provider in region" },
+    { year: "2025", title: "Innovation Hub", description: "Launched advanced testing capabilities" },
   ]
 
   const gradientClasses = [
@@ -24,7 +24,7 @@ export default function Timeline() {
             Our Journey
           </h2>
           <p className="text-lg text-blue-700 max-w-2xl mx-auto">
-            25 years of excellence in electronic manufacturing
+            8 years of excellence in electronic manufacturing
           </p>
         </div>
 

@@ -12,25 +12,50 @@ export default function Header() {
 
   // Detect brightness of background to adjust navbar text colors dynamically
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
     const updateTheme = () => {
-      const bgColor = getComputedStyle(document.body).backgroundColor
-      const rgb = bgColor.match(/\d+/g)?.map(Number)
-      const brightness = rgb ? (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 : 255
-      setIsDark(brightness < 128)
-    }
+      const bgColor = getComputedStyle(document.body).backgroundColor;
+      const rgb = bgColor.match(/\d+/g)?.map(Number);
+      if (!rgb) return;
+      
+      const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+      const newIsDark = brightness < 128;
+      
+      // Only update state if the value has changed
+      if (newIsDark !== isDark) {
+        setIsDark(newIsDark);
+      }
+    };
 
-    updateTheme()
-    const observer = new MutationObserver(updateTheme)
-    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] })
+    // Initial update
+    updateTheme();
+    
+    // Set up observer with debounce to prevent excessive updates
+    let timeoutId: NodeJS.Timeout;
+    const observer = new MutationObserver(() => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateTheme, 50);
+    });
+    
+    observer.observe(document.body, { 
+      attributes: true, 
+      attributeFilter: ["class"],
+      attributeOldValue: true
+    });
 
-    return () => observer.disconnect()
-  }, [])
+    // Cleanup function
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [isDark]);
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
-    { href: "/industries", label: "We Serve" },
+    { href: "/infrastructure", label: "Infrastructure" },
     { href: "/news", label: "News" },
     { href: "/contact", label: "Contact" },
   ]
@@ -46,28 +71,45 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div
-              className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
-                isDark ? "bg-blue-600/80 group-hover:bg-blue-500" : "bg-blue-500 group-hover:bg-blue-600"
-              }`}
-            >
-              <Cpu className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <div
-                className={`font-bold text-xl tracking-tight ${
-                  isDark ? "text-gray-100" : "text-gray-900"
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div 
+                className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 transform group-hover:scale-105 ${
+                  isDark 
+                    ? "bg-white/10 backdrop-blur-sm border border-white/10 group-hover:bg-white/20" 
+                    : "bg-white shadow-md border border-gray-100 group-hover:shadow-lg"
                 }`}
+              >
+                <img 
+                  src="/amtronics_logo.png" 
+                  alt="Amtronics Logo" 
+                  className={`w-7 h-7 object-contain transition-all duration-300 ${
+                    isDark ? "brightness-0 invert" : ""
+                  }`} 
+                />
+              </div>
+              <div 
+                className={`absolute -inset-1 bg-blue-500/20 rounded-xl -z-10 blur opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  isDark ? "mix-blend-screen" : "mix-blend-multiply"
+                }`}
+              />
+            </div>
+            <div className="flex flex-col">
+              <div
+                className={`font-bold text-2xl tracking-tight bg-gradient-to-r ${
+                  isDark 
+                    ? "text-white from-blue-400 to-blue-200" 
+                    : "text-gray-900 from-blue-600 to-blue-400"
+                } bg-clip-text text-transparent`}
               >
                 Amtronics
               </div>
               <div
-                className={`text-xs font-mono ${
-                  isDark ? "text-gray-400" : "text-gray-500"
+                className={`text-xs font-medium tracking-wider ${
+                  isDark ? "text-blue-300/80" : "text-blue-600/80"
                 }`}
               >
-                Power System
+                POWER SYSTEM
               </div>
             </div>
           </Link>
