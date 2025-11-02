@@ -38,13 +38,7 @@ export default function ProductCard({ id, name, description, icon, image, classN
           {description}
         </p>
         
-        {/* <Link 
-          href={`/products/${id}`} 
-          className="inline-flex items-center text-sm font-medium text-primary group-hover:text-accent transition-colors"
-        >
-          Learn more
-          <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </Link> */}
+        
       </div>
     </div>
   );
