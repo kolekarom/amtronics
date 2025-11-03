@@ -1,6 +1,5 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import ClientLogos from "@/components/ClientLogos"
 import Certificates from "@/components/Certificates"
 import BackToTopButton from "@/components/BackToTopButton"
 import HeroWithImage from "@/components/HeroWithImage"
@@ -25,9 +24,6 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroWithImage />
-        
-        {/* Client Logos */}
-        <ClientLogos />
 
         {/* Products Section */}
         <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
