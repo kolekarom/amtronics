@@ -39,7 +39,7 @@ export default function Home() {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Explore our advanced electronic manufacturing solutions designed for precision and performance.
               </p>
-            </div>
+            </div> 
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
