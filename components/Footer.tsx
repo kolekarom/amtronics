@@ -107,7 +107,7 @@ export default function Footer() {
     rel="noopener noreferrer"
     className="text-sm text-white hover:text-[#38BDF8] transition-colors"
   >
-    SR NO 78, near MAHADAV MANDIR, Swaraj Colony, Shri Gajanan Maharaj Nagar, Dighi, Pune, Pimpri-Chinchwad, Maharashtra 411015
+    SR NO 78, near MAHADEV MANDIR, Swaraj Colony, Shri Gajanan Maharaj Nagar, Dighi, Pune, Pimpri-Chinchwad, Maharashtra 411015
   </a>
 </li>
 
