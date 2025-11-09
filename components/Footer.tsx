@@ -109,7 +109,7 @@ export default function Footer() {
   >
     SR NO 78, near MAHADEV MANDIR, Swaraj Colony, Shri Gajanan Maharaj Nagar, Dighi, Pune, Pimpri-Chinchwad, Maharashtra 411015
   </a>
-</li>
+</li> 
 
 
             </ul>
