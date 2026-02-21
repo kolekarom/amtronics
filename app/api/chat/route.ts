@@ -73,6 +73,7 @@ const companyInfo = [
     answer: "🧰 We offer Annual Maintenance Contracts (AMC) for continued service support.",
   },
 
+
   // 4️⃣ Orders & Sales
   {
     keywords: ["buy", "purchase", "order", "how to buy", "payment", "discount"],
@@ -98,7 +99,7 @@ const companyInfo = [
 
   // 6️⃣ Support
   {
-    keywords: ["support", "help", "issue", "problem", "not working", "repair"],
+    keywords: ["support", "help", "issue", "problem", "not working", "repair","contact","phone","email","number"],
     answer:
       "🧑‍🔧 For technical support, call +91 89834 17716 or email support@amtronicspower.com.",
   },
@@ -132,6 +133,18 @@ const companyInfo = [
     answer:
       "📄 For legal documents, GST invoices, or datasheets, please email support@amtronicspower.com.",
   },
+  {
+  keywords: ["location", "address", "where are you located"],
+  answer: "📍 Our organization is located in Shri Gajanan Maharaj Nagar, Dighi, Pune,411015."
+},
+{
+  keywords: ["name", "your name", "bot name"],
+  answer: "🤖 My name is AMbot ."
+},
+{
+  keywords: ["developer", "who developed you", "created this bot"],
+  answer: "👨‍💻 This bot was developed by Om and the project team."
+},
 ];
 
 
