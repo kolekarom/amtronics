@@ -176,7 +176,43 @@ export async function POST(req: Request) {
   console.log("💬 /api/chat endpoint hit", new Date().toISOString());
 
   try {
-    const { message } = await req.json();
+    let message: string = '';
+    const contentType = req.headers.get('content-type') || '';
+    
+    // Handle both JSON and FormData requests
+    if (contentType.includes('application/json')) {
+      // Traditional JSON request
+      const body = await req.json();
+      message = body.message;
+    } else if (contentType.includes('multipart/form-data')) {
+      // FormData request with files
+      const formData = await req.formData();
+      message = formData.get('message') as string || '';
+      
+      // Log file information for debugging
+      const files: string[] = [];
+      for (const [key, value] of formData.entries()) {
+        if (key.startsWith('file') && value instanceof File) {
+          files.push(`${value.name} (${value.size} bytes, ${value.type})`);
+        }
+      }
+      
+      if (files.length > 0) {
+        console.log("📎 Files received:", files);
+        // For now, we'll acknowledge the files but focus on the text message
+        // In a future enhancement, we could process the files here
+        if (!message.trim()) {
+          message = `I've sent ${files.length} file${files.length > 1 ? 's' : ''}. Please help me with these ${files.length > 1 ? 'documents' : 'document'}.`;
+        } else {
+          message += `\n\nI've also attached ${files.length} file${files.length > 1 ? 's' : ''}: ${files.map(f => f.split(' ')[0]).join(', ')}.`;
+        }
+      }
+    } else {
+      // Fallback attempt to parse as JSON
+      const body = await req.json();
+      message = body.message;
+    }
+    
     if (!message?.trim()) {
       return NextResponse.json({ text: "⚠️ Please enter a valid message." }, { status: 400, headers: corsHeaders });
     }

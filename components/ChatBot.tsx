@@ -1,8 +1,16 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Phone, Send, X } from 'lucide-react';
+import { MessageCircle, Phone, Send, X, Paperclip } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+type FileAttachment = {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url: string;
+};
 
 type Message = {
   id: number;
@@ -10,6 +18,7 @@ type Message = {
   sender: 'user' | 'bot';
   timestamp: Date;
   isTyping?: boolean;
+  attachments?: FileAttachment[];
 };
 
 const ChatBot = () => {
@@ -23,21 +32,34 @@ const ChatBot = () => {
     },
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSendMessage = async () => {
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim() && selectedFiles.length === 0) return;
+
+    // Process files into attachments
+    const attachments: FileAttachment[] = selectedFiles.map(file => ({
+      id: URL.createObjectURL(file),
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      url: URL.createObjectURL(file)
+    }));
 
     const userMessage: Message = {
       id: Date.now(),
-      text: inputValue,
+      text: inputValue || (selectedFiles.length > 0 ? `Sent ${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''}` : ''),
       sender: 'user',
       timestamp: new Date(),
+      attachments: attachments.length > 0 ? attachments : undefined,
     };
 
     setMessages((prev) => [...prev, userMessage]);
     const query = inputValue;
     setInputValue('');
+    setSelectedFiles([]);
 
     // Add typing indicator
     const typingIndicator: Message = {
@@ -51,10 +73,21 @@ const ChatBot = () => {
 
     try {
       console.log('📤 Sending message to chat API...');
+      
+      // Create FormData to handle both text and files
+      const formData = new FormData();
+      if (query) {
+        formData.append('message', query);
+      }
+      
+      // Add files to FormData
+      selectedFiles.forEach((file, index) => {
+        formData.append(`file${index}`, file);
+      });
+
       const response = await fetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: query }),
+        body: formData, // Send FormData instead of JSON
       });
 
       const data = await response.json();
@@ -98,6 +131,42 @@ const ChatBot = () => {
       e.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setSelectedFiles(prev => [...prev, ...files]);
+  };
+
+  const removeFile = (index: number) => {
+    setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const isAcceptedFileType = (file: File) => {
+    const acceptedTypes = [
+      // Images
+      'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml',
+      // Documents
+      'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'text/plain', 'text/csv',
+      // Archives
+      'application/zip', 'application/x-rar-compressed', 'application/x-7z-compressed',
+      // CAD/Electronics files
+      'application/kicad-pcb', 'application/kicad-sch', 'application/x-eagle', 'application/x-altium',
+      // Text files
+      'text/plain', 'application/json', 'application/xml'
+    ];
+    return acceptedTypes.includes(file.type) || file.name.match(/\.(pcb|sch|brd|kicad_pcb|kicad_sch|pro|schdoc|pcbdoc|json|xml)$/i);
   };
 
   // Auto-scroll to bottom when messages change
@@ -190,6 +259,32 @@ const ChatBot = () => {
                         message.text
                       )}
                     </p>
+                    
+                    {/* File Attachments */}
+                    {message.attachments && message.attachments.length > 0 && (
+                      <div className="mt-2 space-y-1">
+                        {message.attachments.map((attachment) => (
+                          <div
+                            key={attachment.id}
+                            className="flex items-center space-x-2 bg-white/10 rounded-lg p-2"
+                          >
+                            <Paperclip size={14} className="flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-medium truncate">{attachment.name}</p>
+                              <p className="text-xs opacity-70">{formatFileSize(attachment.size)}</p>
+                            </div>
+                            {attachment.type.startsWith('image/') && (
+                              <img
+                                src={attachment.url}
+                                alt={attachment.name}
+                                className="w-8 h-8 object-cover rounded"
+                              />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
                     <p className="text-xs opacity-70 mt-1 text-right">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
@@ -201,7 +296,49 @@ const ChatBot = () => {
 
             {/* Input */}
             <div className="p-4 border-t border-slate-700 bg-slate-800/50 backdrop-blur-sm">
+              {/* File Preview */}
+              {selectedFiles.length > 0 && (
+                <div className="mb-3 space-y-2">
+                  {selectedFiles.map((file, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center space-x-2 bg-slate-700/50 rounded-lg p-2"
+                    >
+                      <Paperclip size={14} className="text-slate-400" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-white font-medium truncate">{file.name}</p>
+                        <p className="text-xs text-slate-400">{formatFileSize(file.size)}</p>
+                      </div>
+                      <button
+                        onClick={() => removeFile(index)}
+                        className="text-slate-400 hover:text-red-400 transition-colors"
+                      >
+                        <X size={14} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
               <div className="flex items-center gap-2">
+                {/* File Upload Button */}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  onChange={handleFileSelect}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip,.rar,.7z,.pcb,.sch,.brd,.kicad_pcb,.kicad_sch,.pro,.schdoc,.pcbdoc,.json,.xml"
+                />
+                
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="p-3 bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white rounded-xl transition-all duration-200 border border-slate-600/50 flex items-center justify-center"
+                  aria-label="Attach file"
+                >
+                  <Paperclip size={18} className="transform rotate-45" />
+                </button>
+                
                 <input
                   type="text"
                   value={inputValue}
@@ -212,7 +349,8 @@ const ChatBot = () => {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="p-3 bg-sky-500 hover:bg-sky-600 text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-sky-500/20 flex items-center justify-center"
+                  disabled={!inputValue.trim() && selectedFiles.length === 0}
+                  className="p-3 bg-sky-500 hover:bg-sky-600 disabled:bg-slate-600 disabled:cursor-not-allowed text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-sky-500/20 flex items-center justify-center"
                   aria-label="Send message"
                 >
                   <Send size={18} className="transform -rotate-45" />
